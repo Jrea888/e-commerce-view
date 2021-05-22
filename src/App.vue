@@ -1,32 +1,33 @@
+<!--
+ * @Description: 首次渲染页面
+ * @Author: zhangweigang
+ * @Date: 2021-05-18 00:10:23
+ * @LastEditTime: 2021-05-21 18:16:12
+ * @LastEditors: zhangweigang
+-->
 <template>
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
+    <a-button type="primary">按钮</a-button>
+    <a-switch default-checked @change="onChange" />
+    <router-view />
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    onChange(e) {
+      console.log(`a-switch to `);
+    }
+  }
+};
+</script>
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<style></style>

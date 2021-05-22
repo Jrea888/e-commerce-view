@@ -1,0 +1,74 @@
+html,
+body {
+  height: 100%;
+  font-family: 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+  font-weight: normal;
+}
+
+a,
+label,
+button,
+input,
+select {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  color: #000;
+  font-size: 18px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /*消除盒子模型的 margin和padding*/
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+
+/* 去除鼠标点击时的outline轮廓，保留键盘访问时候的outline。很好的解决了无障碍访问的问题 */
+:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+/* 清除浮动 */
+.clrea-fix::after {
+  clear: both;
+  content: '';
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  display: block;
+}
+
+.clrea-fix {
+  zoom: 1;
+}
