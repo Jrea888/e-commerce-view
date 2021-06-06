@@ -12,7 +12,7 @@ module.exports = {
     [
       '@babel/preset-env',
       {
-        useBuiltIns: 'entry',
+        useBuiltIns: 'entry', // 按需引入 polyfill
         corejs: 3
       }
     ]

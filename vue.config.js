@@ -2,7 +2,7 @@
  * @Description: Vue 修改或添加配置
  * @Author: zhangweigang
  * @Date: 2021-05-19 15:34:27
- * @LastEditTime: 2021-05-21 13:36:02
+ * @LastEditTime: 2021-06-06 11:53:51
  * @LastEditors: zhangweigang
  */
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
   // 是否使用包含运行时编译器的 Vue 构建版本
   runtimeCompiler: true,
   // 是否开启 source map
-  productionSourceMap: false,
+  productionSourceMap: true,
   css: {
     loaderOptions: {
       less: { javascriptEnabled: true } // 开启后 antd 样式 可以引用.less文件,解决引入less报错问题

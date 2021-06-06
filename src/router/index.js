@@ -2,7 +2,7 @@
  * @Description: 配置页面路由
  * @Author: zhangweigang
  * @Date: 2021-05-18 00:10:23
- * @LastEditTime: 2021-05-21 10:59:30
+ * @LastEditTime: 2021-05-23 21:28:45
  * @LastEditors: zhangweigang
  */
 import Vue from 'vue';
@@ -11,16 +11,29 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 const routes = [
+  // 重定向
   {
     path: '/',
-    name: 'Home',
-    component: () => import(/* webpackChunkName: "home" */ 'views/Home.vue')
+    redirect: '/login'
   },
+  // 登录模块
   {
-    path: '/about',
-    name: 'About',
+    path: '/login',
+    name: 'Login',
+    component: () => import(/* webpackChunkName: "login" */ 'views/login/Login.vue'),
+    meta: {
+      title: '登录-电商后台管理系统'
+    }
+  },
+  // 系统主页
+  {
+    path: '/index',
+    name: 'Index',
     // 魔法注释，给打包后的文件单独命名
-    component: () => import(/* webpackChunkName: "about" */ 'views/About.vue')
+    component: () => import(/* webpackChunkName: "index" */ 'views/index.vue'),
+    meta: {
+      title: '主页-电商后台管理系统'
+    }
   }
 ];
 
