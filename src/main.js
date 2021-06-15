@@ -2,7 +2,7 @@
  * @Description: 主要配置文件
  * @Author: zhangweigang
  * @Date: 2021-05-18 00:10:23
- * @LastEditTime: 2021-06-15 15:51:18
+ * @LastEditTime: 2021-06-15 18:10:12
  * @LastEditors: zhangweigang
  */
 import 'core-js/stable';
@@ -16,7 +16,10 @@ import store from './store';
 import './plugins/lazy_use.js';
 // 引入 ant-design-vue
 import 'ant-design-vue/dist/antd.css';
+// 进度条加载样式
 import 'nprogress/nprogress.css';
+// 阿里矢量图标
+import './assets/iconfont/iconfont.css';
 
 new Vue({
   router,

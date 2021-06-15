@@ -2,7 +2,7 @@
  * @Description: 配置页面路由
  * @Author: zhangweigang
  * @Date: 2021-05-18 00:10:23
- * @LastEditTime: 2021-06-15 15:58:05
+ * @LastEditTime: 2021-06-15 17:46:09
  * @LastEditors: zhangweigang
  */
 import Vue from 'vue';
@@ -63,16 +63,16 @@ const routes = [
   }
 ];
 
-router.beforeEach((to, from, next) => {
-  if (to.meta.title) {
-    document.title = 'to.meta.title' + '-电商后台管理系统';
-  }
-  next();
-});
-
 const router = new VueRouter({
   mode: 'history',
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = to.meta.title + '-电商后台管理系统';
+  }
+  next();
 });
 
 export default router;

@@ -1,0 +1,58 @@
+{
+  "id": "2612506",
+  "name": "电商后台管理",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1691095",
+      "name": "退出",
+      "font_class": "tuichu",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "8989922",
+      "name": "个人中心",
+      "font_class": "ren",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "6985006",
+      "name": "商品类型",
+      "font_class": "shangpinleixing",
+      "unicode": "e649",
+      "unicode_decimal": 58953
+    },
+    {
+      "icon_id": "21231879",
+      "name": "首 页",
+      "font_class": "shouye",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "13615434",
+      "name": "商品中心",
+      "font_class": "shangpinzhongxin1",
+      "unicode": "e6e8",
+      "unicode_decimal": 59112
+    },
+    {
+      "icon_id": "3240132",
+      "name": "商品分类",
+      "font_class": "shangpinfenlei",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "4143503",
+      "name": "商品中心",
+      "font_class": "shangpinzhongxin",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    }
+  ]
+}

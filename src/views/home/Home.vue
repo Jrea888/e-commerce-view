@@ -2,11 +2,16 @@
  * @Description: 系统主页
  * @Author: zhangweigang
  * @Date: 2021-05-28 21:30:59
- * @LastEditTime: 2021-06-15 14:49:34
+ * @LastEditTime: 2021-06-15 22:22:28
  * @LastEditors: zhangweigang
 -->
 <template>
-  <div>系统主页</div>
+  <div>
+    <!-- 面包屑导航 -->
+    <a-breadcrumb>
+      <a-breadcrumb-item><a href="/index">系统主页</a></a-breadcrumb-item>
+    </a-breadcrumb>
+  </div>
 </template>
 
 <script>

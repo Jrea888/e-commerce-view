@@ -2,7 +2,7 @@
  * @Description: 网络请求配置
  * @Author: meihangbo
  * @Date: 2021-03-21 11:40:06
- * @LastEditTime: 2021-05-28 21:28:15
+ * @LastEditTime: 2021-06-15 16:14:13
  * @LastEditors: zhangweigang
  */
 import Axios from 'axios';
@@ -12,7 +12,7 @@ import { Loading } from 'element-ui';
 export function request(config) {
   // 1.创建对象
   const instance = Axios.create({
-    timeout: 40000
+    timeout: 400000
   });
   let loadingInstance = null;
   Axios.defaults.withCredentials = true; // 请求前携带Cookie

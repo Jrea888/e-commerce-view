@@ -1,8 +1,8 @@
 /*
- * @Description: 请求配置文件
+ * @Description: 商品中心接口请求
  * @Author: zhangweigang
  * @Date: 2021-05-28 21:29:07
- * @LastEditTime: 2021-05-28 21:30:25
+ * @LastEditTime: 2021-06-15 17:31:36
  * @LastEditors: zhangweigang
  */
 import { request } from './index.js';
