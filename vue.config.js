@@ -2,21 +2,24 @@
  * @Description: Vue 修改或添加配置
  * @Author: zhangweigang
  * @Date: 2021-05-19 15:34:27
- * @LastEditTime: 2021-06-06 11:53:51
+ * @LastEditTime: 2021-06-15 16:03:07
  * @LastEditors: zhangweigang
  */
+const isProd = process.env.NODE_ENV === 'production';
+console.log(isProd, '环境');
 module.exports = {
+  publicPath: isProd ? './' : '',
   // eslint 验证
   lintOnSave: 'default',
   // 是否使用包含运行时编译器的 Vue 构建版本
   runtimeCompiler: true,
   // 是否开启 source map
   productionSourceMap: true,
-  css: {
-    loaderOptions: {
-      less: { javascriptEnabled: true } // 开启后 antd 样式 可以引用.less文件,解决引入less报错问题
-    }
-  },
+  // css: {
+  //   loaderOptions: {
+  //     less: { javascriptEnabled: true } // 开启后 antd 样式 可以引用.less文件,解决引入less报错问题
+  //   }
+  // },
   configureWebpack: {
     resolve: {
       // 配置别名

@@ -2,17 +2,19 @@
  * @Description: 首次渲染页面
  * @Author: zhangweigang
  * @Date: 2021-05-18 00:10:23
- * @LastEditTime: 2021-06-06 11:56:58
+ * @LastEditTime: 2021-06-15 14:37:52
  * @LastEditors: zhangweigang
 -->
 <template>
   <div id="app">
+    <!-- 路由 占位符 -->
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'app',
   data() {
     return {};
   },

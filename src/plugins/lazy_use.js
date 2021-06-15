@@ -2,7 +2,7 @@
  * @Description: 该文件是为了按需加载，剔除掉了一些不需要的框架组件。减少了编译支持库包大小;当需要更多组件依赖时，在该文件加入即可
  * @Author: zhangweigang
  * @Date: 2021-05-22 09:50:38
- * @LastEditTime: 2021-05-22 11:20:19
+ * @LastEditTime: 2021-06-11 14:14:53
  * @LastEditors: zhangweigang
  */
 import Vue from 'vue';
@@ -10,8 +10,8 @@ import Vue from 'vue';
 // 基础库
 import { ConfigProvider, Layout, Input, InputNumber, Button, Switch, Radio, Checkbox, Select, Card, Form, Row, Col, Modal, Table, Tabs, Icon, Badge, Popover, Dropdown, List, Avatar, Breadcrumb, Steps, Spin, Menu, Drawer, Tooltip, Alert, Tag, Divider, DatePicker, TimePicker, Upload, Progress, Skeleton, Popconfirm, PageHeader, Result, Statistic, Descriptions, message, Tree, Space, Cascader, Collapse, FormModel, Affix, Pagination, AutoComplete, Mentions, Rate, Slider, Transfer, TreeSelect, Calendar, Carousel, Comment, Empty, Timeline, Anchor, BackTop } from 'ant-design-vue';
 
-import PageLoading from 'components/PageLoading';
-import Dialog from 'components/Dialog';
+import PageLoading from '../components/PageLoading';
+import Dialog from '../components/Dialog';
 
 Vue.use(ConfigProvider);
 Vue.use(Layout);

@@ -2,7 +2,7 @@
  * @Description: 主要配置文件
  * @Author: zhangweigang
  * @Date: 2021-05-18 00:10:23
- * @LastEditTime: 2021-05-23 19:32:32
+ * @LastEditTime: 2021-06-15 15:51:18
  * @LastEditors: zhangweigang
  */
 import 'core-js/stable';
@@ -16,6 +16,7 @@ import store from './store';
 import './plugins/lazy_use.js';
 // 引入 ant-design-vue
 import 'ant-design-vue/dist/antd.css';
+import 'nprogress/nprogress.css';
 
 new Vue({
   router,
