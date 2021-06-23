@@ -2,11 +2,12 @@
  * @Description: Vue 修改或添加配置
  * @Author: zhangweigang
  * @Date: 2021-05-19 15:34:27
- * @LastEditTime: 2021-06-15 16:03:07
+ * @LastEditTime: 2021-06-18 17:33:04
  * @LastEditors: zhangweigang
  */
 const isProd = process.env.NODE_ENV === 'production';
-console.log(isProd, '环境');
+console.log(process.env.NODE_ENV, '环境');
+console.log(process.env.VUE_APP_API_COMMERCE_URL, '文根');
 module.exports = {
   publicPath: isProd ? './' : '',
   // eslint 验证
@@ -15,11 +16,15 @@ module.exports = {
   runtimeCompiler: true,
   // 是否开启 source map
   productionSourceMap: true,
-  // css: {
-  //   loaderOptions: {
-  //     less: { javascriptEnabled: true } // 开启后 antd 样式 可以引用.less文件,解决引入less报错问题
-  //   }
-  // },
+  css: {
+    loaderOptions: {
+      less: {
+        lessOptions: {
+          javascriptEnabled: true // 开启后 antd 样式 可以引用.less文件,解决引入less报错问题
+        }
+      }
+    }
+  },
   configureWebpack: {
     resolve: {
       // 配置别名
@@ -30,22 +35,23 @@ module.exports = {
         views: '@/views'
       }
     }
+  },
+  devServer: {
+    proxy: {
+      '/api': {
+        // 此处的写法，目的是为了 将 /api 替换成 http://123.56.158.121:8888
+        target: 'http://localhost:8888', // 代理地址
+        changeOrigin: true,
+        // 代理 配置允许post请求
+        headers: {
+          host: 'http://localhost:8888',
+          origin: 'http://localhost:8888'
+        },
+        ws: true,
+        pathRewrite: {
+          '^/api': '/'
+        }
+      }
+    }
   }
-  // devServer: {
-  //   proxy: {
-  //     // 目的是为了将/api替换成服务器地址
-  //     target: '',
-  //     // 将host设置成target ip
-  //     changeOrigin: true,
-  //     // 代理允许请求post
-  //     headers: {
-  //       host: 'XXX', // 远端服务器地址
-  //       origin: 'XXX'
-  //     },
-  //     // 重写并替换原路径中的 api/
-  //     pathRewrite: {
-  //       '^api/': '/'
-  //     }
-  //   }
-  // }
 };

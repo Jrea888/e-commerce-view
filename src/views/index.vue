@@ -2,7 +2,7 @@
  * @Description:系统主页
  * @Author: zhangweigang
  * @Date: 2021-05-23 21:22:11
- * @LastEditTime: 2021-06-15 23:56:36
+ * @LastEditTime: 2021-06-19 19:56:43
  * @LastEditors: zhangweigang
 -->
 <template>
@@ -37,12 +37,12 @@
                 <span class="cs_text" v-else>{{ item.name }}</span>
               </a-menu-item>
               <!-- 可以展开的二级菜单 -->
-              <a-sub-menu v-else :key="item.router">
+              <a-sub-menu v-else :key="item.name">
                 <span slot="title">
                   <i :class="item.ico" class="cs_ico"></i>
                   <span class="cs_text">{{ item.name }}</span>
                 </span>
-                <a-menu-item v-for="menuChildren in item.children" :key="menuChildren.router" @click="clickItem(menuChildren.router)">
+                <a-menu-item v-for="menuChildren in item.children" :key="menuChildren.ico" @click="clickItem(menuChildren.router)">
                   <i :class="menuChildren.ico" class="cs_ico"></i>
                   <span class="cs_text">{{ menuChildren.name }}</span>
                 </a-menu-item>
@@ -185,6 +185,7 @@ export default {
 }
 .cs_content {
   flex: 1;
+  height: 800px;
   padding: 10px;
   background-color: #0e4375;
 }

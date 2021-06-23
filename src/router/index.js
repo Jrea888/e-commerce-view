@@ -2,7 +2,7 @@
  * @Description: 配置页面路由
  * @Author: zhangweigang
  * @Date: 2021-05-18 00:10:23
- * @LastEditTime: 2021-06-15 17:46:09
+ * @LastEditTime: 2021-06-18 17:11:36
  * @LastEditors: zhangweigang
  */
 import Vue from 'vue';
@@ -50,6 +50,15 @@ const routes = [
           title: '商品分类'
         }
       },
+      // 下级分类
+      {
+        path: '/subCategorg',
+        name: 'subCategorg',
+        component: () => import(/* webpackChunkName: "subCategorg" */ '@/views/commodity/subCategorg.vue'),
+        meta: {
+          title: '商品分类'
+        }
+      },
       // 商品类型
       {
         path: '/productType',
@@ -64,7 +73,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   routes
 });
 
