@@ -10,8 +10,8 @@
     <!-- 面包屑导航 -->
     <a-breadcrumb>
       <span slot="separator" style="color: white">></span>
-      <a-breadcrumb-item><a class="c_white" href="/index">首页</a></a-breadcrumb-item>
-      <a-breadcrumb-item class="c_white">商品类型</a-breadcrumb-item>
+      <a-breadcrumb-item><a class="c-white" href="/index">首页</a></a-breadcrumb-item>
+      <a-breadcrumb-item class="c-white">商品类型</a-breadcrumb-item>
     </a-breadcrumb>
     <!-- 内容区域 -->
     <div class="cs_card add_cate">

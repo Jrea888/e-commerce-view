@@ -2,7 +2,7 @@
  * @Description:系统主页
  * @Author: zhangweigang
  * @Date: 2021-05-23 21:22:11
- * @LastEditTime: 2021-06-19 19:56:43
+ * @LastEditTime: 2021-06-29 00:01:51
  * @LastEditors: zhangweigang
 -->
 <template>
@@ -80,8 +80,18 @@ export default {
             },
             {
               name: '商品类型',
-              ico: 'iconfont icon-shangpinleixing',
+              ico: 'iconfont icon-shebeileixing',
               router: '/productType'
+            },
+            {
+              name: '商品品牌',
+              ico: 'iconfont icon-pinpai',
+              router: '/productBrand'
+            },
+            {
+              name: '商品属性',
+              ico: 'iconfont icon-attribute',
+              router: '/productAttribute'
             }
           ]
         },

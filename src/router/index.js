@@ -2,7 +2,7 @@
  * @Description: 配置页面路由
  * @Author: zhangweigang
  * @Date: 2021-05-18 00:10:23
- * @LastEditTime: 2021-06-18 17:11:36
+ * @LastEditTime: 2021-06-28 23:57:56
  * @LastEditors: zhangweigang
  */
 import Vue from 'vue';
@@ -64,6 +64,24 @@ const routes = [
         path: '/productType',
         name: 'productType',
         component: () => import(/* webpackChunkName: "proType" */ '@/views/commodity/productType.vue'),
+        meta: {
+          title: '商品类型'
+        }
+      },
+      // 商品品牌
+      {
+        path: '/productBrand',
+        name: 'productBrand',
+        component: () => import(/* webpackChunkName: "proBrand" */ '@/views/commodity/productBrand.vue'),
+        meta: {
+          title: '商品类型'
+        }
+      },
+      // 商品属性
+      {
+        path: '/productAttribute',
+        name: 'productAttribute',
+        component: () => import(/* webpackChunkName: "proAtt" */ '@/views/commodity/productAttribute.vue'),
         meta: {
           title: '商品类型'
         }

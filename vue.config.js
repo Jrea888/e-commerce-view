@@ -2,7 +2,7 @@
  * @Description: Vue 修改或添加配置
  * @Author: zhangweigang
  * @Date: 2021-05-19 15:34:27
- * @LastEditTime: 2021-06-18 17:33:04
+ * @LastEditTime: 2021-06-27 10:38:57
  * @LastEditors: zhangweigang
  */
 const isProd = process.env.NODE_ENV === 'production';

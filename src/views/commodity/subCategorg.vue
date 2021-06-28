@@ -2,7 +2,7 @@
  * @Description:下级分类
  * @Author: zhangweigang
  * @Date: 2021-06-17 23:26:29
- * @LastEditTime: 2021-06-23 22:15:41
+ * @LastEditTime: 2021-06-27 00:05:18
  * @LastEditors: zhangweigang
 -->
 <template>
@@ -10,9 +10,9 @@
     <!-- 面包屑导航 -->
     <a-breadcrumb>
       <span slot="separator" style="color: white">></span>
-      <a-breadcrumb-item href="/index" class="c_white">首页</a-breadcrumb-item>
-      <a-breadcrumb-item href="/productCategorg" class="c_white">商品分类</a-breadcrumb-item>
-      <a-breadcrumb-item class="c_white">下级分类</a-breadcrumb-item>
+      <a-breadcrumb-item href="/index" class="c-white">首页</a-breadcrumb-item>
+      <a-breadcrumb-item href="/productCategorg" class="c-white">商品分类</a-breadcrumb-item>
+      <a-breadcrumb-item class="c-white">下级分类</a-breadcrumb-item>
     </a-breadcrumb>
     <div class="cs_card add_cate">
       <a-row>
@@ -29,9 +29,8 @@
           {{ index + 1 }}
         </span>
         <!-- 级别 -->
-        <span slot="rowLevel" slot-scope="text">
-          <a-tag color="orange" v-if="text == '0'"> 一级 </a-tag>
-          <span v-else>-</span>
+        <span slot="rowLevel">
+          <a-tag color="orange"> 二级 </a-tag>
         </span>
         <!-- 单位 -->
         <span slot="rowProductUnit" slot-scope="text">
@@ -41,7 +40,7 @@
         <span slot="rowIsNav" slot-scope="text, record">
           <a-switch :checked="text" @change="selectNavHandle(record)" />
         </span>
-        <!-- 是否显示 -->
+        <!-- 是否启用 -->
         <span slot="rowEnable" slot-scope="text, record">
           <a-switch :checked="text" @change="selectShowHandle(record)" />
         </span>
@@ -60,87 +59,59 @@
     </a-card>
     <!-- 编辑商品分类 -->
     <a-modal v-model="visibleEditRecInfo" title="编辑商品分类" :destroy-on-close="true" :footer="null" width="1000px">
-      <a-form-model ref="editCateRef" :model="editCateForm" :rules="editCateRules" :layout="formLayout" v-bind="formItemLayout">
-        <a-row align="middle" type="flex">
-          <a-col class="cs_space mf">分类图标 :</a-col>
-          <a-col :md="7" :sm="24">
-            <a-form-model-item label="">
-              <a-upload name="avatar" list-type="picture-card" class="avatar-uploader" :show-upload-list="false" action="https://www.mocky.io/v2/5cc8019d300000980a055e76" :before-upload="beforeUpload" @change="handleChange">
-                <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
-                <div v-else>
-                  <a-icon :type="loading ? 'loading' : 'plus'" />
-                  <div class="ant-upload-text">上传分类图标</div>
-                </div>
-              </a-upload>
-            </a-form-model-item>
-          </a-col>
-          <a-col :md="10" :sm="24">
-            <a-form-model-item ref="name" label="分类名称" prop="name">
-              <a-input v-model="editCateForm.name" placeholder="请输入分类名称" />
-            </a-form-model-item>
-            <a-form-model-item label="上级分类">
-              <a-select default-value="请选择" style="width: 120px" @change="handleProvinceChange">
-                <a-select-option v-for="(province, index) in parentCategoryData" :key="index">
-                  {{ province }}
-                </a-select-option>
-              </a-select>
-              <!-- v-model="subCategoriesData"  -->
-              <!-- 从数据库中看只能是两层关系 <a-select default-value="请选择" class="cs_ml" style="width: 169px">
-                <a-select-option v-for="item in subCategoriesData" :key="item.name">
-                  {{ item.name }}
-                </a-select-option>
-              </a-select> -->
-            </a-form-model-item>
-          </a-col>
-        </a-row>
-        <a-row align="middle" type="flex">
-          <a-col :md="10" :sm="24">
-            <a-form-model-item label="是否显示在导航栏">
-              <a-radio-group v-model="editCateForm.isNav">
-                <a-radio :value="1"> 是 </a-radio>
-                <a-radio :value="2"> 否 </a-radio>
-              </a-radio-group>
-            </a-form-model-item>
-          </a-col>
-          <a-col :md="10" :sm="24">
-            <a-form-model-item label="是否显示">
-              <a-radio-group v-model="editCateForm.enable">
-                <a-radio :value="1"> 是 </a-radio>
-                <a-radio :value="2"> 否 </a-radio>
-              </a-radio-group>
-            </a-form-model-item>
-          </a-col>
-        </a-row>
-        <a-row align="middle" type="flex">
-          <a-col :md="10" :sm="24">
-            <a-form-model-item label="数量单位">
-              <a-select defaule-value="请选择" v-model="editCateForm.productUnit" @change="changeNumUnit" class="cs_w">
-                <a-select-option value=""> 请选择 </a-select-option>
-                <a-select-option value="件"> 件 </a-select-option>
-                <a-select-option value="台"> 台 </a-select-option>
-                <a-select-option value="个"> 个 </a-select-option>
-              </a-select>
-            </a-form-model-item>
-            <a-form-model-item label="排序">
-              <a-select v-model="editCateForm.sort" @change="changeSort" class="cs_w">
-                <a-select-option value="0"> 升序 </a-select-option>
-                <a-select-option value="1"> 降序 </a-select-option>
-              </a-select>
-            </a-form-model-item>
-          </a-col>
-        </a-row>
-        <a-row align="middle" type="flex">
-          <a-col class="cs_space"> 关键词 :</a-col>
-          <a-col :span="20">
-            <a-input v-model="editCateForm.keywords" placeholder="请输入关键字" class="cs_b" />
-          </a-col>
-        </a-row>
-        <a-row class="cs_mt" align="middle" type="flex">
-          <a-col class="cs_space"> 分类描述 :</a-col>
-          <a-col :span="17">
-            <a-input v-model="editCateForm.desc" type="textarea" :auto-size="autoSize" :max-length="contentText" placeholder="请输入分类描述" allow-clear />
-          </a-col>
-        </a-row>
+      <a-form-model ref="editCateRef" :model="editCateForm" :rules="editCateRules" :layout="formLayout" v-bind="formItemLayout" class="form-model">
+        <a-form-model-item label="上传分类图标" prop="icon">
+          <a-upload name="avatar" list-type="picture-card" class="avatar-uploader" :show-upload-list="false" action="https://www.mocky.io/v2/5cc8019d300000980a055e76" :before-upload="beforeUpload" @change="handleChange">
+            <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
+            <div v-else>
+              <a-icon :type="loading ? 'loading' : 'plus'" />
+              <div class="ant-upload-text">上传分类图标</div>
+            </div>
+          </a-upload>
+        </a-form-model-item>
+        <a-form-model-item ref="name" label="分类名称" prop="name">
+          <a-input v-model="editCateForm.name" placeholder="请输入分类名称" />
+        </a-form-model-item>
+        <a-form-model-item label="上级分类" prop="level">
+          <a-cascader :options="cateList" :field-names="fieldNames" :popup-style="popupStyle" @change="onChangeLevel" placeholder="请选择上级分类" class="casc cs_w" />
+          <!-- <a-select default-value="请选择" style="width: 120px" @change="handleProvinceChange">
+            <a-select-option v-for="(province, index) in parentCategoryData" :key="index">
+              {{ province }}
+            </a-select-option>
+          </a-select> -->
+        </a-form-model-item>
+        <a-form-model-item label="是否显示在导航栏">
+          <a-radio-group v-model="editCateForm.isNav">
+            <a-radio :value="1"> 是 </a-radio>
+            <a-radio :value="2"> 否 </a-radio>
+          </a-radio-group>
+        </a-form-model-item>
+        <a-form-model-item label="是否启用">
+          <a-radio-group v-model="editCateForm.enable">
+            <a-radio :value="1"> 是 </a-radio>
+            <a-radio :value="2"> 否 </a-radio>
+          </a-radio-group>
+        </a-form-model-item>
+        <a-form-model-item label="数量单位" prop="productUnit">
+          <a-select defaule-value="请选择" v-model="editCateForm.productUnit" @change="changeNumUnit" class="cs_w">
+            <a-select-option value=""> 请选择 </a-select-option>
+            <a-select-option value="件"> 件 </a-select-option>
+            <a-select-option value="台"> 台 </a-select-option>
+            <a-select-option value="个"> 个 </a-select-option>
+          </a-select>
+        </a-form-model-item>
+        <a-form-model-item label="排序" prop="sort">
+          <a-select v-model="editCateForm.sort" @change="changeSort" class="cs_w">
+            <a-select-option value="0"> 升序 </a-select-option>
+            <a-select-option value="1"> 降序 </a-select-option>
+          </a-select>
+        </a-form-model-item>
+        <a-form-model-item label="关键词" prop="keywords">
+          <a-input v-model="editCateForm.keywords" placeholder="请输入关键字" class="cs_b" />
+        </a-form-model-item>
+        <a-form-model-item label="分类描述" prop="desc">
+          <a-input v-model="editCateForm.desc" type="textarea" :auto-size="autoSize" :max-length="contentText" placeholder="请输入分类描述" allow-clear />
+        </a-form-model-item>
       </a-form-model>
       <a-row>
         <a-col class="cs_mt" :span="24" align="right">
@@ -202,7 +173,7 @@ const columns = [
     scopedSlots: { customRender: 'rowIsNav' }
   },
   {
-    title: '是否显示',
+    title: '是否启用',
     dataIndex: 'enable',
     key: 'enable',
     width: 120,
@@ -237,10 +208,9 @@ export default {
       contentText: 1000,
       autoSize: { minRows: 4, maxRows: 6 },
       formItemLayout: {
-        labelCol: { span: 8 },
+        labelCol: { span: 4 },
         wrapperCol: { span: 16 }
       },
-      editCateInfoParent: null,
       formLayout: 'horizontal',
       editCateForm: {
         icon: 'string', // 图标    上传图标链接
@@ -256,20 +226,32 @@ export default {
         productNum: 0 // 商品数量
       },
       editCateRules: {
-        name: [{ required: true, message: '请输入分类名称', trigger: 'blur' }]
+        icon: [{ required: true, message: '请上传分类图标', trigger: 'blur' }],
+        name: [{ required: true, message: '请输入分类名称', trigger: 'blur' }],
+        productUnit: [{ required: true, message: '请选择商品单位', trigger: 'blur' }],
+        sort: [{ required: true, message: '请输入排序序号', trigger: 'blur' }],
+        keywords: [{ required: true, message: '请输入搜索关键字', trigger: 'blur' }],
+        desc: [{ required: true, message: '请输入分类描述', trigger: 'blur' }],
+        level: [{ required: true, message: '请选择上级分类', trigger: 'blur' }]
+      },
+      // 级联选择器
+      fieldNames: {
+        value: 'id',
+        label: 'name',
+        children: 'childNode'
+      },
+      // 自定义浮层样式
+      popupStyle: {
+        width: '300px'
       }
     };
   },
   created() {
+    // 获取父级ID
     this.parentId = this.$route.params.parentId;
     // 获取上级分类
     commerceInfoAipService.getClassificTree().then((res) => {
-      let self = this;
-      this.editCateInfoParent = res.data;
       if (res.status === 200) {
-        res.data.map((item) => {
-          self.parentCategoryData.push(item.name);
-        });
         this.cateList = res.data;
       } else {
         this.$message.error('服务异常，请联系管理员！');
@@ -284,6 +266,13 @@ export default {
       this.editCateForm.level = 1;
       this.editCateForm.parentId = this.cateList[index].id;
     },
+    // 级联选择器
+    onChangeLevel(valueArr) {
+      console.log(valueArr);
+      console.log(this.cateList);
+      this.editCateForm.level = 1;
+      this.editCateForm.parentId = valueArr[0];
+    },
     // 数据加载
     loadData(pagination) {
       let params = {
@@ -292,7 +281,6 @@ export default {
         current: pagination.pageNo
       };
       return commerceInfoAipService.getPagQueryProSubCate(params).then((res) => {
-        console.log(res, '数据结果');
         if (res.status === 200) {
           let temp = {
             data: res.data.records,
@@ -332,7 +320,7 @@ export default {
         }
       });
     },
-    // 是否显示生改变触发
+    // 是否启用生改变触发
     selectShowHandle(item) {
       console.log(item);
       let ids = [];
@@ -379,7 +367,7 @@ export default {
         isNav: record.isNav ? 1 : 2, // 是否显示在导航栏：0否1；1是2
         enable: record.enable ? 1 : 2, // 是否启用
         productUnit: record.productUnit || '',
-        sort: record.sort ? '升序' : '降序',
+        sort: record.sort,
         keywords: record.keywords,
         desc: record.desc,
         level: 0, // 分类层级：0是root 不选择上层分类就是 0 root，选择为 1
@@ -389,30 +377,37 @@ export default {
     },
     // 保存修改商品信息
     saveEditData() {
-      // 处理是否显示
-      let is_Nav = this.editCateForm.isNav === 2 ? 0 : this.editCateForm.isNav;
-      let is_Eable = this.editCateForm.enable === 2 ? 0 : this.editCateForm.enable;
-      let spProductCategoryReq = {
-        id: this.editCateForm.id,
-        icon: this.editCateForm.icon || 'string',
-        name: this.editCateForm.name,
-        parentId: this.editCateForm.parentId,
-        isNav: is_Nav ? true : false, // 是否显示在导航栏：0否1；1是2
-        enable: is_Eable ? true : false, // 是否启用
-        productUnit: this.editCateForm.productUnit,
-        sort: this.editCateForm.sort === '降序' ? 1 : 0, // 排序字段 0: 升序，1：降序
-        keywords: this.editCateForm.keywords,
-        desc: this.editCateForm.desc,
-        level: this.editCateForm.level, // 分类层级：0是root 不选择上层分类是 0 root，选择为 1
-        productNum: this.editCateForm.productNum
-      };
-      commerceInfoAipService.modifyProductCategory(spProductCategoryReq).then((res) => {
-        if (res.status === 200) {
-          this.$message.success('修改成功!');
-          this.$refs.table.refresh(true);
-          this.visibleEditRecInfo = false;
+      this.$refs.editCateRef.validate((valid) => {
+        if (valid) {
+          // 处理是否启用
+          let is_Nav = this.editCateForm.isNav === 2 ? 0 : this.editCateForm.isNav;
+          let is_Eable = this.editCateForm.enable === 2 ? 0 : this.editCateForm.enable;
+          let spProductCategoryReq = {
+            id: this.editCateForm.id,
+            icon: this.editCateForm.icon || 'string',
+            name: this.editCateForm.name,
+            parentId: this.editCateForm.parentId,
+            isNav: is_Nav ? true : false, // 是否显示在导航栏：0否1；1是2
+            enable: is_Eable ? true : false, // 是否启用
+            productUnit: this.editCateForm.productUnit,
+            sort: this.editCateForm.sort, // 排序
+            keywords: this.editCateForm.keywords,
+            desc: this.editCateForm.desc,
+            level: this.editCateForm.level, // 分类层级：0是root 不选择上层分类是 0 root，选择为 1
+            productNum: this.editCateForm.productNum
+          };
+          commerceInfoAipService.modifyProductCategory(spProductCategoryReq).then((res) => {
+            if (res.status === 200) {
+              this.$message.success('修改成功!');
+              this.$refs.table.refresh(true);
+              this.visibleEditRecInfo = false;
+            } else {
+              this.$message.error('服务异常，请联系管理员！');
+            }
+          });
         } else {
-          this.$message.error('服务异常，请联系管理员！');
+          this.$message.warning('请先完善信息！');
+          return false;
         }
       });
     },
@@ -424,4 +419,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="less" scoped>
+.form-model {
+  padding: 20px 0;
+  background-color: whitesmoke;
+  border-radius: 3px;
+}
+.casc .ant-cascader-menu {
+  width: 150px;
+}
+.cs_w {
+  width: 360px;
+}
+</style>

@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "2121739",
+      "name": "品牌",
+      "font_class": "pinpai",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "975320",
+      "name": "属性",
+      "font_class": "attribute",
+      "unicode": "e6af",
+      "unicode_decimal": 59055
+    },
+    {
+      "icon_id": "9495521",
+      "name": "设备类型",
+      "font_class": "shebeileixing",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
       "icon_id": "1691095",
       "name": "退出",
       "font_class": "tuichu",
@@ -18,13 +39,6 @@
       "font_class": "ren",
       "unicode": "e600",
       "unicode_decimal": 58880
-    },
-    {
-      "icon_id": "6985006",
-      "name": "商品类型",
-      "font_class": "shangpinleixing",
-      "unicode": "e649",
-      "unicode_decimal": 58953
     },
     {
       "icon_id": "21231879",

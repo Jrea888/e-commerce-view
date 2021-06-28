@@ -74,10 +74,10 @@ li {
 }
 
 /* 公共样式 */
-.c_white {
+.c-white {
   color: white !important;
 }
-.c_white a {
+.c-white a {
   color: white !important;
 }
 .cs_card {
